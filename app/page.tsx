@@ -44,7 +44,7 @@ const App: React.FC = () => {
     },
     {
       title: 'Odoo ERP AI-Agent',
-      description: 'A custome built plugin for Odoo for an AI assistent that connects to an LLM that can read and write the Odoo PostgreSQL database.',
+      description: 'A custom-built plugin for Odoo featuring an AI assistant that connects to an LLM to read and write from the Odoo PostgreSQL database.',
       imageSrc: 'https://placehold.co/600x400/2d3748/a0aec0?text=Odoo+AI+Agent',
       youtubeLink: 'https://youtu.be/09OrhxvnLjM?si=C_tNg7nMu3c2Z2zL',
       githubLink: 'https://github.com/coryhighsea/odoo-erp-ai-agent',
@@ -69,15 +69,13 @@ const App: React.FC = () => {
       </nav>
 
       {/* Hero Section */}
-      <section id="hero" className="relative h-screen flex items-center justify-center text-center bg-cover bg-center"
-      style={{ backgroundImage: "" }}>
-        <div className="absolute inset-0 bg-black opacity-60"></div>
-        <div className="relative z-10 p-8 rounded-lg shadow-2xl bg-gray-800 bg-opacity-70 max-w-3xl mx-auto">
+      <section id="hero" className="relative h-screen flex items-center justify-center text-center bg-gradient-to-br from-gray-800 to-gray-700">
+        <div className="relative z-10 p-8 rounded-lg shadow-2xl bg-gray-900 bg-opacity-80 max-w-3xl mx-auto">
           <h1 className="text-5xl md:text-7xl font-extrabold text-white leading-tight mb-4 animate-fade-in-up">
-            Hi, I&#39;m <span className="text-teal-400">Cory Hisey</span>
+            Hi, I&#39;m <span className="text-teal-300">Cory Hisey</span>
           </h1>
-          <p className="text-xl md:text-2xl text-gray-300 mb-8 animate-fade-in-up delay-200">
-            A passionate <span className="font-semibold text-teal-300">Embedded Software Developer</span> building engaging systems.
+          <p className="text-xl md:text-2xl text-gray-200 mb-8 animate-fade-in-up delay-200">
+            A passionate <span className="font-semibold text-teal-200">Embedded Software Developer</span> building engaging systems.
           </p>
           <a href="#projects" className="inline-block bg-teal-500 hover:bg-teal-600 text-white font-bold py-3 px-8 rounded-full shadow-lg transition-all duration-300 transform hover:scale-105 animate-fade-in-up delay-400">
             View My Work
@@ -99,7 +97,7 @@ const App: React.FC = () => {
             </div>
             <div className="md:w-2/3 text-lg text-gray-300 leading-relaxed">
               <p className="mb-4">
-                Hello! I&#39;m a dedicated embedded software developer with a strong passion for creating robust and efficient embedded systems. My journey began with realizing a mechanical engineering degree then later finished a masters in mechatronics engineering. Leading me to dive deep into various programming languages and hardware.
+                Hello! I&#39;m a dedicated embedded software developer with a strong passion for creating robust and efficient embedded systems. My journey began with earning a mechanical engineering degree, followed by a Master's in mechatronics engineering. Leading me to dive deep into various programming languages and hardware.
               </p>
               <p className="mb-4">
                 I specialize in front-end embedded development, with a keen eye for user experience and responsive design. I love bringing ideas to life through clean, maintainable code. Beyond coding, I enjoy learning new technologies and solving complex problems.
@@ -118,7 +116,7 @@ const App: React.FC = () => {
           <h2 className="text-4xl font-bold text-center text-teal-400 mb-12">My Skills</h2>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
             {['QT/QML', 'C++', 'JavaScript', 'Python', 'LLM Engineering', 'ROS2', 'Next.js', 'TypeScript', 'PostgreSQL', 'Git', 'Docker', '3D Printing'].map((skill, index) => (
-              <div key={index} className="bg-gray-800 p-6 rounded-lg shadow-lg text-center transform hover:scale-105 transition-transform duration-300">
+              <div key={index} className="bg-gray-800 p-8 rounded-lg shadow-lg backdrop-blur-sm transform transition-all duration-300 hover:scale-105 hover:shadow-sky-500/20">
                 <p className="text-xl font-semibold text-gray-200">{skill}</p>
               </div>
             ))}
@@ -132,11 +130,11 @@ const App: React.FC = () => {
           <h2 className="text-4xl font-bold text-center text-teal-400 mb-12">My Projects</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
             {projects.map((project, index) => ( // Mapping over the new projects array
-              <div key={index} className="bg-gray-900 rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300">
+              <div key={index} className="bg-gray-900 rounded-lg shadow-lg backdrop-blur-sm transform hover:scale-105 transition-all duration-300 hover:shadow-sky-500/20">
                 <img
                   src={project.imageSrc} // Use project.imageSrc
                   alt={project.title} // Use project.title for alt text
-                  className="w-full h-48 object-cover"
+                  className="w-full h-48 object-cover shadow-lg"
                 />
                 <div className="p-6">
                   <h3 className="text-2xl font-bold text-white mb-2">{project.title}</h3> {/* Use project.title */}
@@ -144,10 +142,10 @@ const App: React.FC = () => {
                     {project.description} {/* Use project.description */}
                   </p>
                   <div className="flex justify-between items-center">
-                    <a href={project.youtubeLink} className="text-teal-400 hover:text-teal-300 font-semibold transition-colors duration-300">
+                    <a href={project.youtubeLink} target="_blank" rel="noopener noreferrer" className="text-teal-400 hover:text-teal-300 font-semibold transition-colors duration-300">
                       Link
                     </a>
-                    <a href={project.githubLink} className="text-gray-400 hover:text-white transition-colors duration-300">
+                    <a href={project.githubLink} target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors duration-300">
                       GitHub
                     </a>
                   </div>
