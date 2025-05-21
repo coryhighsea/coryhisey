@@ -18,7 +18,7 @@ const App: React.FC = () => {
       title: 'Translation validation AI tool',
       description: 'Validation tool using LLMs, built in Python to validate and improve translations in real-time.',
       imageSrc: 'https://placehold.co/600x400/2d3748/a0aec0?text=Translation+Validation+AI',
-      youtubeLink: 'https://www.youtube.com/@coryhisey8431/videos',
+      youtubeLink: 'https://www.youtube.com/@coryhisey8431',
       githubLink: 'https://github.com/coryhighsea',
     },
     {
@@ -32,7 +32,7 @@ const App: React.FC = () => {
       title: 'Embedded screen UI with ESP32',
       description: 'An embedded screen UI developed with ESP32, featuring a responsive design and real-time sensor data via ESPNOW.',
       imageSrc: '/Screen.jpeg',
-      youtubeLink: 'https://www.youtube.com/@coryhisey8431/videos',
+      youtubeLink: 'https://www.youtube.com/@coryhisey8431',
       githubLink: 'https://github.com/coryhighsea',
     },
     {
@@ -143,7 +143,7 @@ const App: React.FC = () => {
                   </p>
                   <div className="flex justify-between items-center">
                     <a href={project.youtubeLink} target="_blank" rel="noopener noreferrer" className="text-teal-400 hover:text-teal-300 font-semibold transition-colors duration-300">
-                      Link
+                      YouTube
                     </a>
                     <a href={project.githubLink} target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors duration-300">
                       GitHub
