@@ -8,15 +8,15 @@ import React from 'react';
 const App: React.FC = () => {
   const projects = [
     {
-      title: 'Infotainment System',
-      description: 'A centerconsole infotainment system developed with QT/QML and MQTT protocol to communication with other screens.',
-      imageSrc: 'https://placehold.co/600x400/2d3748/a0aec0?text=Infortainment+System',
-      youtubeLink: 'https://www.youtube.com/@coryhisey8431/videos',
+      title: 'Smart Cockpit Centerconsole',
+      description: 'Developed the centerconsole of the Smart Cockpit with QT/QML and MQTT protocol to communicate with the other screens.',
+      imageSrc: 'https://placehold.co/600x400/2d3748/a0aec0?text=Smart+Cockpit',
+      youtubeLink: 'https://www.auo.com/en-global/products/index/Mobility/Smart_Cockpit',
       githubLink: 'https://github.com/coryhighsea',
     },
     {
       title: 'Translation validation AI tool',
-      description: 'A translation validation tool using LLMs to validate and improve translations in real-time.',
+      description: 'Validation tool using LLMs, built in Python to validate and improve translations in real-time.',
       imageSrc: 'https://placehold.co/600x400/2d3748/a0aec0?text=Translation+Validation+AI',
       youtubeLink: 'https://www.youtube.com/@coryhisey8431/videos',
       githubLink: 'https://github.com/coryhighsea',
@@ -145,7 +145,7 @@ const App: React.FC = () => {
                   </p>
                   <div className="flex justify-between items-center">
                     <a href={project.youtubeLink} className="text-teal-400 hover:text-teal-300 font-semibold transition-colors duration-300">
-                      YouTube
+                      Link
                     </a>
                     <a href={project.githubLink} className="text-gray-400 hover:text-white transition-colors duration-300">
                       GitHub
