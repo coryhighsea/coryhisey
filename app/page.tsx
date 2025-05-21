@@ -74,7 +74,7 @@ const App: React.FC = () => {
         <div className="absolute inset-0 bg-black opacity-60"></div>
         <div className="relative z-10 p-8 rounded-lg shadow-2xl bg-gray-800 bg-opacity-70 max-w-3xl mx-auto">
           <h1 className="text-5xl md:text-7xl font-extrabold text-white leading-tight mb-4 animate-fade-in-up">
-            Hi, I'm <span className="text-teal-400">Cory Hisey</span>
+            Hi, I&#39;m <span className="text-teal-400">Cory Hisey</span>
           </h1>
           <p className="text-xl md:text-2xl text-gray-300 mb-8 animate-fade-in-up delay-200">
             A passionate <span className="font-semibold text-teal-300">Embedded Software Developer</span> building engaging systems.
@@ -99,13 +99,13 @@ const App: React.FC = () => {
             </div>
             <div className="md:w-2/3 text-lg text-gray-300 leading-relaxed">
               <p className="mb-4">
-                Hello! I'm a dedicated embedded software developer with a strong passion for creating robust and efficient embedded systems. My journey began with realizing a mechanical engineering degree then later finished a masters in mechatronics engineering. Leading me to dive deep into various programming languages and hardware.
+                Hello! I&#39;m a dedicated embedded software developer with a strong passion for creating robust and efficient embedded systems. My journey began with realizing a mechanical engineering degree then later finished a masters in mechatronics engineering. Leading me to dive deep into various programming languages and hardware.
               </p>
               <p className="mb-4">
                 I specialize in front-end embedded development, with a keen eye for user experience and responsive design. I love bringing ideas to life through clean, maintainable code. Beyond coding, I enjoy learning new technologies and solving complex problems.
               </p>
               <p>
-                When I'm not at my keyboard, I like to spend time with my wife and cats, reading books, and travelling to new countries. I'm always open to new challenges and collaborations!
+                When I&#39;m not at my keyboard, I like to spend time with my wife and cats, reading books, and travelling to new countries. I&#39;m always open to new challenges and collaborations!
               </p>
             </div>
           </div>
@@ -163,7 +163,7 @@ const App: React.FC = () => {
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-4xl font-bold text-teal-400 mb-8">Get in Touch</h2>
           <p className="text-lg text-gray-300 mb-8 max-w-2xl mx-auto">
-            I'm always open to new opportunities, collaborations, or just a friendly chat. Feel free to reach out!
+            I&#39;m always open to new opportunities, collaborations, or just a friendly chat. Feel free to reach out!
           </p>
           <div className="space-y-4 md:space-y-0 md:space-x-6">
             <a
