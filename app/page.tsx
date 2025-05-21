@@ -1,361 +1,243 @@
-// app/page.tsx
-// This is the main landing page for the Career Finder application.
-// It uses Next.js and Tailwind CSS for styling, and includes an inline survey section.
+// page.tsx
+// This file defines the main landing page component for a Next.js personal portfolio.
 
-'use client'; // Required for using React state and event handlers
+'use client';
+import React from 'react';
 
-import { useState } from 'react'; // Corrected import statement
-import { ChevronRight, HelpCircle, Lightbulb, BarChart3, Zap, Search, Rocket, MessageSquare, CheckSquare, ArrowRightCircle } from 'lucide-react';
-
-// Define the main functional component for the landing page
-export default function LandingPage() {
-  // State for the survey (simplified example)
-  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
-  const [surveyStarted, setSurveyStarted] = useState(false);
-  const [answers, setAnswers] = useState<{ [key: number]: string }>({});
-
-  // Sample survey questions
-  const surveyQuestions = [
+// Main App component for the landing page
+const App: React.FC = () => {
+  const projects = [
     {
-      id: 1,
-      text: "What type of work environment do you prefer?",
-      options: ["Collaborative team setting", "Independent and focused", "Fast-paced and dynamic", "Structured and predictable"],
-      type: "radio",
+      title: 'Infotainment System',
+      description: 'A centerconsole infotainment system developed with QT/QML and MQTT protocol to communication with other screens.',
+      imageSrc: 'https://placehold.co/600x400/2d3748/a0aec0?text=Infortainment+System',
+      youtubeLink: 'https://www.youtube.com/@coryhisey8431/videos',
+      githubLink: 'https://github.com/coryhighsea',
     },
     {
-      id: 2,
-      text: "Which of these activities do you enjoy the most?",
-      options: ["Solving complex problems", "Creating new things", "Helping and guiding others", "Organizing and planning"],
-      type: "radio",
+      title: 'Translation validation AI tool',
+      description: 'A translation validation tool using LLMs to validate and improve translations in real-time.',
+      imageSrc: 'https://placehold.co/600x400/2d3748/a0aec0?text=Translation+Validation+AI',
+      youtubeLink: 'https://www.youtube.com/@coryhisey8431/videos',
+      githubLink: 'https://github.com/coryhighsea',
     },
     {
-      id: 3,
-      text: "Briefly describe what 'a fulfilling career' means to you. (Optional)",
-      type: "textarea",
-      placeholder: "e.g., Making a positive impact, continuous learning, financial stability..."
+      title: 'Mobile drive robot simulation',
+      description: 'A simulation of a mobile drive robot using ROS2 and Gazebo, showcasing path planning and obstacle avoidance.',
+      imageSrc: 'https://placehold.co/600x400/2d3748/a0aec0?text=Mobile+Drive+Robot',
+      youtubeLink: 'https://www.youtube.com/watch?v=eMkwDfn32QA&t=1s&ab_channel=CoryHisey',
+      githubLink: 'https://github.com/coryhighsea',
     },
     {
-      id: 4,
-      text: "Are you looking for a career that involves more analytical thinking or creative expression?",
-      options: ["Primarily Analytical", "Primarily Creative", "A good balance of both"],
-      type: "radio",
-    }
+      title: 'Embedded screen UI with ESP32',
+      description: 'An embedded screen UI developed with ESP32, featuring a responsive design and real-time sensor data via ESPNOW.',
+      imageSrc: 'https://placehold.co/600x400/2d3748/a0aec0?text=Embedded+Screen+UI',
+      youtubeLink: 'https://www.youtube.com/@coryhisey8431/videos',
+      githubLink: 'https://github.com/coryhighsea',
+    },
+    {
+      title: 'Heltec LoRa32 Meshtastic',
+      description: 'Meshtastic firmware flashed on Heltec LoRa32 with 3D printed enclosures. This project showcases long-range communication capabilities.',
+      imageSrc: 'https://placehold.co/600x400/2d3748/a0aec0?text=Meshtastic+LoRa32',
+      youtubeLink: 'https://youtu.be/dKr2ze8ixjE?si=OnVvvoIgl9QhbolE',
+      githubLink: 'https://github.com/coryhighsea',
+    },
+    {
+      title: 'Odoo ERP AI-Agent',
+      description: 'A custome built plugin for Odoo for an AI assistent that connects to an LLM that can read and write the Odoo PostgreSQL database.',
+      imageSrc: 'https://placehold.co/600x400/2d3748/a0aec0?text=Odoo+AI+Agent',
+      youtubeLink: 'https://youtu.be/09OrhxvnLjM?si=C_tNg7nMu3c2Z2zL',
+      githubLink: 'https://github.com/coryhighsea/odoo-erp-ai-agent',
+    },
   ];
 
-  const handleStartSurvey = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
-    e.preventDefault();
-    setSurveyStarted(true);
-    const surveySection = document.getElementById('survey-section');
-    if (surveySection) {
-      surveySection.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
-  const handleAnswerOption = (questionId: number, option: string) => { // Added type for option
-    setAnswers(prev => ({ ...prev, [questionId]: option }));
-  };
-
-  const handleNextQuestion = () => {
-    if (currentQuestionIndex < surveyQuestions.length - 1) {
-      setCurrentQuestionIndex(prev => prev + 1);
-    } else {
-      // TODO: Implement submission logic and display results
-      alert("Survey completed! (Results display coming soon)");
-      // For now, just log answers
-      console.log("Survey Answers:", answers);
-    }
-  };
-
-  const currentQuestion = surveyQuestions[currentQuestionIndex];
-
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-gray-800 to-slate-900 text-white font-sans">
-      {/* Header Navigation */}
-      <header className="py-6 px-4 sm:px-6 lg:px-8 shadow-md bg-slate-800/50 backdrop-blur-md fixed w-full top-0 z-50">
-        <div className="container mx-auto flex justify-between items-center">
-          <a href="#" className="text-3xl font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-sky-400 to-blue-500">
-            Career Finder
+    <div className="min-h-screen bg-gray-900 text-gray-100 font-inter">
+      {/* Navbar */}
+      <nav className="fixed w-full bg-gray-800 bg-opacity-90 z-10 shadow-md">
+        <div className="container mx-auto px-4 py-4 flex justify-between items-center">
+          <a href="#" className="text-2xl font-bold text-teal-400 hover:text-teal-300 transition-colors duration-300">
+            Cory Hisey
           </a>
-          <nav className="hidden md:flex items-center">
-            <a
-              href="#features"
-              className="text-slate-300 hover:text-sky-400 transition-colors duration-300 px-4 py-2 rounded-md"
-            >
-              Features
-            </a>
-            <a
-              href="#how-it-works"
-              className="text-slate-300 hover:text-sky-400 transition-colors duration-300 px-4 py-2 rounded-md"
-            >
-              How It Works
-            </a>
-            <a
-              href="#survey-section"
-              onClick={handleStartSurvey}
-              className="bg-sky-500 hover:bg-sky-600 text-white font-semibold px-6 py-3 rounded-lg shadow-lg hover:shadow-sky-500/50 transition-all duration-300 transform hover:scale-105 ml-4"
-            >
-              Get Started
-            </a>
-          </nav>
-          {/* Mobile Menu Button - Placeholder */}
-          <div className="md:hidden">
-            <button className="text-slate-300 hover:text-sky-400">
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-7 h-7">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
-              </svg>
-            </button>
+          <div className="space-x-6">
+            <a href="#about" className="text-gray-300 hover:text-teal-400 transition-colors duration-300">About</a>
+            <a href="#skills" className="text-gray-300 hover:text-teal-400 transition-colors duration-300">Skills</a>
+            <a href="#projects" className="text-gray-300 hover:text-teal-400 transition-colors duration-300">Projects</a>
+            <a href="#contact" className="text-gray-300 hover:text-teal-400 transition-colors duration-300">Contact</a>
           </div>
         </div>
-      </header>
+      </nav>
 
       {/* Hero Section */}
-      <main className="pt-32 pb-16 sm:pt-40 sm:pb-20">
-        <section className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <Lightbulb className="mx-auto h-16 w-16 text-sky-400 mb-6" strokeWidth={1.5} />
-          <h2 className="text-5xl sm:text-6xl lg:text-7xl font-extrabold mb-6 tracking-tight">
-            Discover Your <span className="bg-clip-text text-transparent bg-gradient-to-r from-sky-400 to-blue-500">Ideal Career</span> Path
-          </h2>
-          <p className="text-xl sm:text-2xl text-slate-300 max-w-3xl mx-auto mb-10 leading-relaxed">
-            Tired of uncertainty? Career Finder guides you through a personalized journey of self-discovery to reveal career options perfectly aligned with your passions, skills, and aspirations.
+      <section id="hero" className="relative h-screen flex items-center justify-center text-center bg-cover bg-center"
+      style={{ backgroundImage: "" }}>
+        <div className="absolute inset-0 bg-black opacity-60"></div>
+        <div className="relative z-10 p-8 rounded-lg shadow-2xl bg-gray-800 bg-opacity-70 max-w-3xl mx-auto">
+          <h1 className="text-5xl md:text-7xl font-extrabold text-white leading-tight mb-4 animate-fade-in-up">
+            Hi, I'm <span className="text-teal-400">Cory Hisey</span>
+          </h1>
+          <p className="text-xl md:text-2xl text-gray-300 mb-8 animate-fade-in-up delay-200">
+            A passionate <span className="font-semibold text-teal-300">Embedded Software Developer</span> building engaging systems.
           </p>
-          <a
-            href="#survey-section" // Updated href to scroll to the survey
-            onClick={handleStartSurvey} // Added onClick for smooth scroll and state update
-            className="inline-flex items-center justify-center px-10 py-4 bg-gradient-to-r from-sky-500 to-blue-600 hover:from-sky-600 hover:to-blue-700 text-white font-bold rounded-lg text-xl shadow-xl hover:shadow-sky-500/60 transition-all duration-300 transform hover:scale-105 group"
-          >
-            Start Your Journey
-            <ChevronRight className="ml-3 h-6 w-6 group-hover:translate-x-1 transition-transform duration-300" />
+          <a href="#projects" className="inline-block bg-teal-500 hover:bg-teal-600 text-white font-bold py-3 px-8 rounded-full shadow-lg transition-all duration-300 transform hover:scale-105 animate-fade-in-up delay-400">
+            View My Work
           </a>
-        </section>
+        </div>
+      </section>
 
-        {/* How It Works Section (Order can be adjusted) */}
-        <section id="how-it-works" className="py-20 sm:py-28 bg-slate-800/30 mt-20 sm:mt-28">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-16">
-              <HelpCircle className="mx-auto h-12 w-12 text-sky-400 mb-4" strokeWidth={1.5}/>
-              <h3 className="text-4xl sm:text-5xl font-bold mb-4 tracking-tight">How Career Finder Guides You</h3>
-              <p className="text-lg text-slate-400 max-w-2xl mx-auto">
-                Our intuitive process makes finding your direction straightforward and insightful.
+      {/* About Section */}
+      <section id="about" className="py-20 bg-gray-800">
+        <div className="container mx-auto px-4">
+          <h2 className="text-4xl font-bold text-center text-teal-400 mb-12">About Me</h2>
+          <div className="flex flex-col md:flex-row items-center md:space-x-12">
+            <div className="md:w-1/3 mb-8 md:mb-0">
+              <img
+                src="https://placehold.co/400x400/2d3748/a0aec0?text=Your+Photo"
+                alt="Your Photo"
+                className="rounded-full w-64 h-64 md:w-80 md:h-80 object-cover mx-auto shadow-xl border-4 border-teal-500"
+              />
+            </div>
+            <div className="md:w-2/3 text-lg text-gray-300 leading-relaxed">
+              <p className="mb-4">
+                Hello! I'm a dedicated embedded software developer with a strong passion for creating robust and efficient embedded systems. My journey began with realizing a mechanical engineering degree then later finished a masters in mechatronics engineering. Leading me to dive deep into various programming languages and hardware.
+              </p>
+              <p className="mb-4">
+                I specialize in front-end embedded development, with a keen eye for user experience and responsive design. I love bringing ideas to life through clean, maintainable code. Beyond coding, I enjoy learning new technologies and solving complex problems.
+              </p>
+              <p>
+                When I'm not at my keyboard, I like to spend time with my wife and cats, reading books, and travelling to new countries. I'm always open to new challenges and collaborations!
               </p>
             </div>
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-              {/* Step 1 */}
-              <div className="bg-slate-800 p-8 rounded-xl shadow-2xl hover:shadow-sky-500/30 transition-shadow duration-300 transform hover:-translate-y-1">
-                <div className="flex items-center justify-center h-16 w-16 rounded-full bg-sky-500 text-white mb-6 text-2xl font-bold shadow-lg">1</div>
-                <h4 className="text-2xl font-semibold mb-3 text-sky-300">Answer Insightful Questions</h4>
-                <p className="text-slate-400 leading-relaxed">
-                  Engage with our carefully crafted survey designed to understand your unique passions, skills, and values.
-                </p>
-              </div>
-              {/* Step 2 */}
-              <div className="bg-slate-800 p-8 rounded-xl shadow-2xl hover:shadow-sky-500/30 transition-shadow duration-300 transform hover:-translate-y-1">
-                <div className="flex items-center justify-center h-16 w-16 rounded-full bg-sky-500 text-white mb-6 text-2xl font-bold shadow-lg">2</div>
-                <h4 className="text-2xl font-semibold mb-3 text-sky-300">Share Your Thoughts (Optional)</h4>
-                <p className="text-slate-400 leading-relaxed">
-                  Provide additional context through free-text input, allowing our AI to fine-tune your personalized results.
-                </p>
-              </div>
-              {/* Step 3 */}
-              <div className="bg-slate-800 p-8 rounded-xl shadow-2xl hover:shadow-sky-500/30 transition-shadow duration-300 transform hover:-translate-y-1">
-                <div className="flex items-center justify-center h-16 w-16 rounded-full bg-sky-500 text-white mb-6 text-2xl font-bold shadow-lg">3</div>
-                <h4 className="text-2xl font-semibold mb-3 text-sky-300">Follow a Linear Path</h4>
-                <p className="text-slate-400 leading-relaxed">
-                  Navigate a clear, step-by-step process that intelligently adapts based on your responses.
-                </p>
-              </div>
-              {/* Step 4 */}
-              <div className="bg-slate-800 p-8 rounded-xl shadow-2xl hover:shadow-sky-500/30 transition-shadow duration-300 transform hover:-translate-y-1">
-                <div className="flex items-center justify-center h-16 w-16 rounded-full bg-sky-500 text-white mb-6 text-2xl font-bold shadow-lg">4</div>
-                <h4 className="text-2xl font-semibold mb-3 text-sky-300">Receive Tailored Options</h4>
-                <p className="text-slate-400 leading-relaxed">
-                  Get a curated list of potential career paths, each with a percentage match indicating its suitability for you.
-                </p>
-              </div>
-            </div>
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* Survey Section - NEW */}
-        <section id="survey-section" className="py-20 sm:py-28 scroll-mt-24"> {/* scroll-mt-24 to offset fixed header */}
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-12">
-              <CheckSquare className="mx-auto h-12 w-12 text-green-400 mb-4" strokeWidth={1.5}/>
-              <h3 className="text-4xl sm:text-5xl font-bold mb-3 tracking-tight">Let's Find Your Path</h3>
-              {!surveyStarted && (
-                <p className="text-lg text-slate-400 max-w-2xl mx-auto">
-                  Click "Start Your Journey" above or the button below to begin the interactive survey.
-                </p>
-              )}
-            </div>
-
-            {/* Conditional rendering for the survey once started */}
-            {!surveyStarted && (
-              <div className="text-center mt-8">
-                <button
-                  onClick={() => setSurveyStarted(true)}
-                  className="inline-flex items-center justify-center px-8 py-3 bg-green-500 hover:bg-green-600 text-white font-semibold rounded-lg text-lg shadow-lg hover:shadow-green-500/50 transition-all duration-300 transform hover:scale-105 group"
-                >
-                  Begin Survey Now
-                  <ArrowRightCircle className="ml-3 h-5 w-5 group-hover:translate-x-1 transition-transform duration-300" />
-                </button>
+      {/* Skills Section */}
+      <section id="skills" className="py-20 bg-gray-900">
+        <div className="container mx-auto px-4">
+          <h2 className="text-4xl font-bold text-center text-teal-400 mb-12">My Skills</h2>
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+            {['QT/QML', 'C++', 'JavaScript', 'Python', 'LLM Engineering', 'ROS2', 'Next.js', 'TypeScript', 'PostgreSQL', 'Git', 'Docker', '3D Printing'].map((skill, index) => (
+              <div key={index} className="bg-gray-800 p-6 rounded-lg shadow-lg text-center transform hover:scale-105 transition-transform duration-300">
+                <p className="text-xl font-semibold text-gray-200">{skill}</p>
               </div>
-            )}
+            ))}
+          </div>
+        </div>
+      </section>
 
-            {surveyStarted && currentQuestion && (
-              <div className="max-w-2xl mx-auto bg-slate-800 p-8 sm:p-10 rounded-xl shadow-2xl">
-                <div className="mb-8">
-                  <p className="text-sm text-sky-400 font-medium mb-2">Question {currentQuestionIndex + 1} of {surveyQuestions.length}</p>
-                  <h4 className="text-2xl sm:text-3xl font-semibold text-white mb-6">{currentQuestion.text}</h4>
-
-                  {/* Render options based on question type */}
-                  {currentQuestion.type === "radio" && currentQuestion.options && (
-                    <div className="space-y-4">
-                      {currentQuestion.options.map((option, index) => (
-                        <label
-                          key={index}
-                          className={`block w-full p-4 rounded-lg border-2 transition-all duration-200 cursor-pointer
-                                      ${answers[currentQuestion.id] === option
-                                        ? 'bg-sky-500 border-sky-400 shadow-lg scale-105'
-                                        : 'bg-slate-700 border-slate-600 hover:bg-slate-600/70 hover:border-sky-500'}`}
-                        >
-                          <input
-                            type="radio"
-                            name={`question-${currentQuestion.id}`}
-                            value={option}
-                            checked={answers[currentQuestion.id] === option}
-                            onChange={() => handleAnswerOption(currentQuestion.id, option)}
-                            className="sr-only" // Hide actual radio, style the label
-                          />
-                          <span className="text-lg text-white">{option}</span>
-                        </label>
-                      ))}
-                    </div>
-                  )}
-
-                  {currentQuestion.type === "textarea" && (
-                    <div>
-                      <textarea
-                        rows={4}
-                        placeholder={currentQuestion.placeholder || "Enter your thoughts here..."}
-                        value={answers[currentQuestion.id] || ''}
-                        onChange={(e) => handleAnswerOption(currentQuestion.id, e.target.value)}
-                        className="w-full p-4 rounded-lg bg-slate-700 border-2 border-slate-600 focus:border-sky-500 focus:ring-1 focus:ring-sky-500 outline-none text-white placeholder-slate-400 transition-colors duration-200"
-                      />
-                    </div>
-                  )}
-                </div>
-
-                <div className="mt-10 text-right">
-                  <button
-                    onClick={handleNextQuestion}
-                    disabled={currentQuestion.type === 'radio' && !answers[currentQuestion.id]} // Disable if radio and no answer
-                    className="inline-flex items-center justify-center px-8 py-3 bg-gradient-to-r from-sky-500 to-blue-600 hover:from-sky-600 hover:to-blue-700 text-white font-bold rounded-lg text-lg shadow-xl hover:shadow-sky-500/60 transition-all duration-300 transform hover:scale-105 group disabled:opacity-50 disabled:cursor-not-allowed"
-                  >
-                    {currentQuestionIndex < surveyQuestions.length - 1 ? "Next Question" : "View My Options"}
-                    <ChevronRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform duration-300" />
-                  </button>
+{/* Projects Section */}
+      <section id="projects" className="py-20 bg-gray-800">
+        <div className="container mx-auto px-4">
+          <h2 className="text-4xl font-bold text-center text-teal-400 mb-12">My Projects</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+            {projects.map((project, index) => ( // Mapping over the new projects array
+              <div key={index} className="bg-gray-900 rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300">
+                <img
+                  src={project.imageSrc} // Use project.imageSrc
+                  alt={project.title} // Use project.title for alt text
+                  className="w-full h-48 object-cover"
+                />
+                <div className="p-6">
+                  <h3 className="text-2xl font-bold text-white mb-2">{project.title}</h3> {/* Use project.title */}
+                  <p className="text-gray-400 text-base mb-4">
+                    {project.description} {/* Use project.description */}
+                  </p>
+                  <div className="flex justify-between items-center">
+                    <a href={project.youtubeLink} className="text-teal-400 hover:text-teal-300 font-semibold transition-colors duration-300">
+                      YouTube
+                    </a>
+                    <a href={project.githubLink} className="text-gray-400 hover:text-white transition-colors duration-300">
+                      GitHub
+                    </a>
+                  </div>
                 </div>
               </div>
-            )}
-             {/* Placeholder for results - to be implemented */}
-             {surveyStarted && currentQuestionIndex >= surveyQuestions.length -1 && answers[surveyQuestions[surveyQuestions.length-1].id] && (
-                <div className="max-w-2xl mx-auto bg-slate-800 p-8 sm:p-10 rounded-xl shadow-2xl mt-10 text-center">
-                    <h4 className="text-3xl font-semibold text-green-400 mb-6">Thank You!</h4>
-                    <p className="text-slate-300 text-lg mb-4">
-                        Your responses have been recorded. We are now analyzing your profile to find the best career matches.
-                    </p>
-                    <p className="text-slate-400 text-md mb-8">
-                        (This is where your personalized career options with percentages will appear.)
-                    </p>
-                    <BarChart3 className="mx-auto h-16 w-16 text-sky-400 mb-6" strokeWidth={1.5} />
-                     <button
-                        onClick={() => {
-                            setSurveyStarted(false);
-                            setCurrentQuestionIndex(0);
-                            setAnswers({});
-                            // Optionally scroll to top
-                            window.scrollTo({ top: 0, behavior: 'smooth' });
-                        }}
-                        className="mt-6 px-8 py-3 bg-slate-600 hover:bg-slate-500 text-white font-semibold rounded-lg text-lg shadow-lg transition-all duration-300"
-                    >
-                        Start Over
-                    </button>
-                </div>
-            )}
+            ))}
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* Features / Benefits Section */}
-        <section id="features" className="py-20 sm:py-28">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-16">
-                <BarChart3 className="mx-auto h-12 w-12 text-sky-400 mb-4" strokeWidth={1.5}/>
-                <h3 className="text-4xl sm:text-5xl font-bold mb-4 tracking-tight">Why Choose Career Finder?</h3>
-                <p className="text-lg text-slate-400 max-w-2xl mx-auto">
-                    Empowering you to make confident decisions about your future.
-                </p>
-            </div>
-            <div className="grid md:grid-cols-1 lg:grid-cols-3 gap-10">
-              <div className="bg-slate-800/50 p-8 rounded-xl shadow-lg backdrop-blur-sm transform transition-all duration-300 hover:scale-105 hover:shadow-sky-500/20">
-                <h4 className="text-2xl font-semibold mb-3 text-sky-300">Clarity in Complexity</h4>
-                <p className="text-slate-400 leading-relaxed">Cut through the noise. We provide a focused approach to narrow down the overwhelming number of career choices.</p>
-              </div>
-              <div className="bg-slate-800/50 p-8 rounded-xl shadow-lg backdrop-blur-sm transform transition-all duration-300 hover:scale-105 hover:shadow-sky-500/20">
-                <h4 className="text-2xl font-semibold mb-3 text-sky-300">Personalized & Precise</h4>
-                <p className="text-slate-400 leading-relaxed">Your journey is unique. Our algorithm delivers recommendations tailored specifically to your profile and inputs.</p>
-              </div>
-              <div className="bg-slate-800/50 p-8 rounded-xl shadow-lg backdrop-blur-sm transform transition-all duration-300 hover:scale-105 hover:shadow-sky-500/20">
-                <h4 className="text-2xl font-semibold mb-3 text-sky-300">Data-Driven Insights</h4>
-                <p className="text-slate-400 leading-relaxed">Leverage the power of data. Our percentage-based matching gives you a clear indication of compatibility.</p>
-              </div>
-            </div>
+      {/* Contact Section */}
+      <section id="contact" className="py-20 bg-gray-900">
+        <div className="container mx-auto px-4 text-center">
+          <h2 className="text-4xl font-bold text-teal-400 mb-8">Get in Touch</h2>
+          <p className="text-lg text-gray-300 mb-8 max-w-2xl mx-auto">
+            I'm always open to new opportunities, collaborations, or just a friendly chat. Feel free to reach out!
+          </p>
+          <div className="space-y-4 md:space-y-0 md:space-x-6">
+            <a
+              href="mailto:cjhisey@gmail.com"
+              className="inline-block bg-teal-500 hover:bg-teal-600 text-white font-bold py-3 px-8 rounded-full shadow-lg transition-all duration-300 transform hover:scale-105"
+            >
+              Email Me
+            </a>
+            <a
+              href="https://www.linkedin.com/in/cory-hisey-730a8a59/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block bg-gray-700 hover:bg-gray-600 text-white font-bold py-3 px-8 rounded-full shadow-lg transition-all duration-300 transform hover:scale-105"
+            >
+              LinkedIn
+            </a>
+            <a
+              href="https://github.com/coryhighsea"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block bg-gray-700 hover:bg-gray-600 text-white font-bold py-3 px-8 rounded-full shadow-lg transition-all duration-300 transform hover:scale-105"
+            >
+              GitHub
+            </a>
           </div>
-        </section>
-
-        {/* Next.js Features Section */}
-        <section className="py-20 sm:py-28 bg-slate-800/30">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-16">
-              <Zap className="mx-auto h-12 w-12 text-amber-400 mb-4" strokeWidth={1.5}/>
-              <h3 className="text-4xl sm:text-5xl font-bold mb-4 tracking-tight">Powered by Next.js</h3>
-              <p className="text-lg text-slate-400 max-w-2xl mx-auto">
-                Built with cutting-edge technology for a seamless and fast experience.
-              </p>
-            </div>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 text-center">
-              <div className="bg-slate-800 p-8 rounded-xl shadow-xl hover:shadow-amber-500/30 transition-shadow duration-300 transform hover:scale-105">
-                <Rocket className="mx-auto h-10 w-10 text-amber-400 mb-4" strokeWidth={1.5}/>
-                <h4 className="text-xl font-semibold mb-2 text-amber-300">Blazing Fast Performance</h4>
-                <p className="text-slate-400">
-                  Next.js's Server Components and optimization capabilities ensure a quick and responsive user experience.
-                </p>
-              </div>
-              <div className="bg-slate-800 p-8 rounded-xl shadow-xl hover:shadow-amber-500/30 transition-shadow duration-300 transform hover:scale-105">
-                <Search className="mx-auto h-10 w-10 text-amber-400 mb-4" strokeWidth={1.5}/>
-                <h4 className="text-xl font-semibold mb-2 text-amber-300">SEO Optimized</h4>
-                <p className="text-slate-400">
-                  Built with SEO best practices in mind, making it easier for users to find Career Finder through search engines.
-                </p>
-              </div>
-              <div className="bg-slate-800 p-8 rounded-xl shadow-xl hover:shadow-amber-500/30 transition-shadow duration-300 transform hover:scale-105">
-                <Lightbulb className="mx-auto h-10 w-10 text-amber-400 mb-4" strokeWidth={1.5}/>
-                <h4 className="text-xl font-semibold mb-2 text-amber-300">Modern Developer Experience</h4>
-                <p className="text-slate-400">
-                  Features like Fast Refresh and a robust ecosystem allow for rapid development and iteration.
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
-      </main>
+        </div>
+      </section>
 
       {/* Footer */}
-      <footer className="py-10 bg-slate-900 border-t border-slate-700">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center text-slate-400">
-          <p>&copy; {new Date().getFullYear()} Career Finder. All rights reserved.</p>
-          <p className="mt-2 text-sm">Find your future, today.</p>
+      <footer className="bg-gray-800 py-8 text-center text-gray-400">
+        <div className="container mx-auto px-4">
+          <p>&copy; {new Date().getFullYear()} Cory Hisey. All rights reserved.</p>
+          <p className="text-sm mt-2">Built with Next.js and Tailwind CSS.</p>
         </div>
       </footer>
+
+      {/* Custom CSS for animations - You would typically put this in a global CSS file */}
+      <style jsx global>{`
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
+
+        body {
+          font-family: 'Inter', sans-serif;
+        }
+
+        @keyframes fadeIn {
+          from { opacity: 0; }
+          to { opacity: 1; }
+        }
+
+        @keyframes fadeInUp {
+          from {
+            opacity: 0;
+            transform: translateY(20px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        .animate-fade-in-up {
+          animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        .animate-fade-in-up.delay-200 {
+          animation-delay: 0.2s;
+        }
+
+        .animate-fade-in-up.delay-400 {
+          animation-delay: 0.4s;
+        }
+      `}</style>
     </div>
   );
-}
+};
+
+export default App;
