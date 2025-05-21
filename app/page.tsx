@@ -97,7 +97,7 @@ const App: React.FC = () => {
             </div>
             <div className="md:w-2/3 text-lg text-gray-300 leading-relaxed">
               <p className="mb-4">
-                Hello! I&#39;m a dedicated embedded software developer with a strong passion for creating robust and efficient embedded systems. My journey began with earning a mechanical engineering degree, followed by a Master's in mechatronics engineering. Leading me to dive deep into various programming languages and hardware.
+                Hello! I&#39;m a dedicated embedded software developer with a strong passion for creating robust and efficient embedded systems. My journey began with earning a mechanical engineering degree, followed by a Master&#39;s in mechatronics engineering. Leading me to dive deep into various programming languages and hardware.
               </p>
               <p className="mb-4">
                 I specialize in front-end embedded development, with a keen eye for user experience and responsive design. I love bringing ideas to life through clean, maintainable code. Beyond coding, I enjoy learning new technologies and solving complex problems.
