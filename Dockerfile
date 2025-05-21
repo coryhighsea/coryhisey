@@ -1,6 +1,6 @@
 # Use a base image that includes Node.js and can easily install Bun
 # node:20-slim is a good choice, as Bun is compatible with Node.js projects
-FROM oven/bun:latest as builder # Using an official Bun image as the builder
+FROM oven/bun:latest as builder 
 
 # Set the working directory
 WORKDIR /app
@@ -27,7 +27,7 @@ WORKDIR /app
 # Copy the build output from the builder stage
 COPY --from=builder /app/.next ./.next
 COPY --from=builder /app/public ./public
-COPY --from=builder /app/node_modules ./node_modules # Buns node_modules is compatible
+COPY --from=builder /app/node_modules ./node_modules
 COPY --from=builder /app/package.json ./package.json
 
 # Set environment variables for Next.js production
