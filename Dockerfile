@@ -6,7 +6,7 @@ FROM oven/bun:latest as builder
 WORKDIR /app
 
 # Copy package.json and bun.lockb/bun.lock to leverage Docker cache
-COPY package.json bun.lockb ./
+COPY package.json bun.lock ./
 
 # Install dependencies with Bun
 RUN bun install --frozen-lockfile
@@ -29,7 +29,7 @@ COPY --from=builder /app/.next ./.next
 COPY --from=builder /app/public ./public
 COPY --from=builder /app/node_modules ./node_modules
 COPY --from=builder /app/package.json ./package.json
-COPY --from=builder /app/package.json /app/bun.lockb ./
+COPY --from=builder /app/package.json /app/bun.lock ./bun.lock
 
 # Set environment variables for Next.js production
 ENV NODE_ENV production
