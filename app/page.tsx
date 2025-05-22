@@ -4,6 +4,7 @@
 'use client';
 import React from 'react';
 import Image from 'next/image';
+import Counter from '@/components/counter/counter';
 
 // Main App component for the landing page
 const App: React.FC = () => {
@@ -130,6 +131,9 @@ const App: React.FC = () => {
                 <p className="text-xl font-semibold text-gray-200">{skill}</p>
               </div>
             ))}
+          </div>
+          <div className="mt-8">
+            <Counter />
           </div>
         </div>
       </section>
