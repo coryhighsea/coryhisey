@@ -3,6 +3,7 @@
 
 'use client';
 import React from 'react';
+import Image from 'next/image';
 
 // Main App component for the landing page
 const App: React.FC = () => {
@@ -69,8 +70,17 @@ const App: React.FC = () => {
       </nav>
 
       {/* Hero Section */}
-      <section id="hero" className="relative h-screen flex items-center justify-center text-center bg-gradient-to-br from-gray-800 to-gray-700">
-        <div className="relative z-10 p-8 rounded-lg shadow-2xl bg-gray-900 bg-opacity-80 max-w-3xl mx-auto">
+      <section id="hero" className="relative h-screen flex items-center justify-center text-center overflow-hidden">
+        <div className="absolute inset-0">
+          <Image
+            src="/hero2.jpeg"
+            alt="Hero Background"
+            fill
+            className="object-cover brightness-50"
+            priority
+          />
+        </div>
+        <div className="relative z-10 p-8 rounded-lg shadow-2xl bg-black/60 backdrop-blur-lg max-w-3xl mx-auto transform transition-all duration-500 hover:scale-105">
           <h1 className="text-5xl md:text-7xl font-extrabold text-white leading-tight mb-4 animate-fade-in-up">
             Hi, I&#39;m <span className="text-teal-300">Cory Hisey</span>
           </h1>
@@ -84,7 +94,7 @@ const App: React.FC = () => {
       </section>
 
       {/* About Section */}
-      <section id="about" className="py-20 bg-gray-800">
+      <section id="about" className="py-20 bg-gradient-to-br from-gray-800 to-gray-700">
         <div className="container mx-auto px-4">
           <h2 className="text-4xl font-bold text-center text-teal-400 mb-12">About Me</h2>
           <div className="flex flex-col md:flex-row items-center md:space-x-12">
@@ -115,7 +125,7 @@ const App: React.FC = () => {
         <div className="container mx-auto px-4">
           <h2 className="text-4xl font-bold text-center text-teal-400 mb-12">My Skills</h2>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
-            {['QT/QML', 'C++', 'JavaScript', 'Python', 'LLM Engineering', 'ROS2', 'Next.js', 'TypeScript', 'PostgreSQL', 'Git', 'Docker', '3D Printing'].map((skill, index) => (
+            {['QT/QML', 'C++', 'JavaScript', 'Python', 'AI Engineering', 'ROS2', 'Next.js', 'TypeScript', 'PostgreSQL', 'Git', 'Docker', '3D Printing'].map((skill, index) => (
               <div key={index} className="bg-gray-800 p-8 rounded-lg shadow-lg backdrop-blur-sm transform transition-all duration-300 hover:scale-105 hover:shadow-sky-500/20">
                 <p className="text-xl font-semibold text-gray-200">{skill}</p>
               </div>
@@ -165,10 +175,18 @@ const App: React.FC = () => {
           </p>
           <div className="space-y-4 md:space-y-0 md:space-x-6">
             <a
-              href="mailto:cjhisey@gmail.com"
+              href="mailto:&#099;&#106;&#104;&#105;&#115;&#101;&#121;&#064;&#103;&#109;&#097;&#105;&#108;&#046;&#099;&#111;&#109;"
               className="inline-block bg-teal-500 hover:bg-teal-600 text-white font-bold py-3 px-8 rounded-full shadow-lg transition-all duration-300 transform hover:scale-105"
             >
               Email Me
+            </a>
+            <a
+              href="https://www.youtube.com/@coryhisey8431"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block bg-gray-700 hover:bg-gray-600 text-white font-bold py-3 px-8 rounded-full shadow-lg transition-all duration-300 transform hover:scale-105"
+            >
+              YouTube
             </a>
             <a
               href="https://www.linkedin.com/in/cory-hisey-730a8a59/"
