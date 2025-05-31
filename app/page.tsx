@@ -101,7 +101,7 @@ const App: React.FC = () => {
           <div className="flex flex-col md:flex-row items-center md:space-x-12">
             <div className="md:w-1/3 mb-8 md:mb-0">
               <img
-                src="/cory3.jpg"
+                src="/cory_hisey.jpg"
                 alt="Cory Hisey"
                 className="rounded-full w-64 h-64 md:w-80 md:h-80 object-cover mx-auto shadow-xl border-4 border-teal-500 object-top"
               />
