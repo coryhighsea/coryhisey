@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { Databuddy } from '@databuddy/sdk';
+// import { Databuddy } from '@databuddy/sdk';
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -26,14 +26,21 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-      <Databuddy
+      {/* <Databuddy
         clientId="PLZBBnVTC8kK1VvhDuLxB"
         enableBatching={true}
         trackScreenViews
         trackPerformance
         trackWebVitals={true} // Default is false, explicitly enable for quick start
         trackErrors={true}    
-      />
+      /> */}
+    <script
+        src="https://cdn.databuddy.cc/databuddy.js"
+        data-client-id="PLZBBnVTC8kK1VvhDuLxB"
+        data-enable-batching="true"
+        crossOrigin="anonymous"
+        async
+      ></script>
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
