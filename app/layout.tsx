@@ -26,7 +26,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head />
-      <Databuddy
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+      >
+        <Databuddy
         clientId="PLZBBnVTC8kK1VvhDuLxB"
         enableBatching={true}
         trackScreenViews
@@ -34,9 +37,6 @@ export default function RootLayout({
         trackWebVitals={true} // Default is false, explicitly enable for quick start
         trackErrors={true}    
       />
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
         {children}
       </body>
     </html>
