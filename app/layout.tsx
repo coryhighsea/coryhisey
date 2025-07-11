@@ -38,7 +38,7 @@ export default function RootLayout({
         src="https://cdn.databuddy.cc/databuddy.js"
         data-client-id="PLZBBnVTC8kK1VvhDuLxB"
         data-enable-batching="true"
-        crossOrigin="anonymous"
+        crossorigin="anonymous"
         async
       ></script>
       </head>
