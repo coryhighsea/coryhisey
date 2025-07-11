@@ -28,7 +28,10 @@ export default function RootLayout({
       <head>
       <Databuddy
         clientId="PLZBBnVTC8kK1VvhDuLxB"
-        enableBatching={true}
+        trackScreenViews
+        trackPerformance
+        trackWebVitals={true} // Default is false, explicitly enable for quick start
+        trackErrors={true}    
       />
       </head>
       <body
