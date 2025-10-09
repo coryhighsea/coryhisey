@@ -132,9 +132,6 @@ const App: React.FC = () => {
               </div>
             ))}
           </div>
-          <div className="mt-8">
-            <Counter />
-          </div>
         </div>
       </section>
 
