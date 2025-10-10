@@ -6,14 +6,26 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "db:seed": "tsx prisma/seed.ts",
+    "db:migrate": "prisma migrate dev",
+    "db:generate": "prisma generate"
   },
   "dependencies": {
     "@databuddy/sdk": "^1.4.0",
+    "@prisma/client": "^6.17.0",
+    "@stripe/stripe-js": "^8.0.0",
     "@supabase/supabase-js": "^2.49.8",
+    "@types/uuid": "^10.0.0",
     "next": "15.3.2",
+    "prisma": "^6.17.0",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "stripe": "^19.1.0",
+    "uuid": "^13.0.0"
+  },
+  "prisma": {
+    "seed": "tsx prisma/seed.ts"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
@@ -24,6 +36,7 @@
     "eslint": "^9",
     "eslint-config-next": "15.3.2",
     "tailwindcss": "^4",
+    "tsx": "^4.20.6",
     "typescript": "^5"
   }
 }
