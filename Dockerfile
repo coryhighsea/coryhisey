@@ -9,7 +9,7 @@ RUN curl -fsSL https://bun.sh/install | bash \
   && bun --version
 
 # copy lockfile first so install layer is cached
-COPY package.json package-lock.json* bun.lockb* ./
+COPY package.json bun.lock ./
 
 # Use bun to install (frozen lockfile)
 RUN bun install --frozen-lockfile
@@ -22,11 +22,17 @@ WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
-ENV NEXT_TELEMETRY_DISABLED=1
-ENV DATABASE_URL=postgresql://dummy:dummy@localhost:5432/dummy
-ENV STRIPE_SECRET_KEY=sk_test_dummy_for_build
-ENV NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=pk_test_dummy_for_build
-ENV STRIPE_WEBHOOK_SECRET=whsec_dummy_for_build
+ARG NEXT_TELEMETRY_DISABLED=1
+ARG DATABASE_URL=postgresql://dummy:dummy@localhost:5432/dummy
+ARG STRIPE_SECRET_KEY=sk_test_dummy_for_build
+ARG NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=pk_test_dummy_for_build
+ARG STRIPE_WEBHOOK_SECRET=whsec_dummy_for_build
+
+ENV NEXT_TELEMETRY_DISABLED=${NEXT_TELEMETRY_DISABLED}
+ENV DATABASE_URL=${DATABASE_URL}
+ENV STRIPE_SECRET_KEY=${STRIPE_SECRET_KEY}
+ENV NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=${NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY}
+ENV STRIPE_WEBHOOK_SECRET=${STRIPE_WEBHOOK_SECRET}
 
 # Generate Prisma client
 RUN npx prisma generate
