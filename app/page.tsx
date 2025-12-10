@@ -64,7 +64,6 @@ const App: React.FC = () => {
             <a href="#about" className="text-gray-300 hover:text-teal-400 transition-colors duration-300">About</a>
             <a href="#skills" className="text-gray-300 hover:text-teal-400 transition-colors duration-300">Skills</a>
             <a href="#projects" className="text-gray-300 hover:text-teal-400 transition-colors duration-300">Projects</a>
-            <a href="/shop" className="text-gray-300 hover:text-teal-400 transition-colors duration-300">Shop</a>
             <a href="#contact" className="text-gray-300 hover:text-teal-400 transition-colors duration-300">Contact</a>
           </div>
         </div>
