@@ -1,42 +1,73 @@
-# Use a base image that includes Node.js and can easily install Bun
-# node:20-slim is a good choice, as Bun is compatible with Node.js projects
-FROM oven/bun:latest as builder 
-
-# Set the working directory
+# --- deps: install using lockfile (cacheable) ---
+FROM node:20-alpine AS deps
+RUN apk add --no-cache curl bash ca-certificates openssl
 WORKDIR /app
 
-# Copy package.json and bun.lockb/bun.lock to leverage Docker cache
-COPY package.json bun.lock ./
+# Install Bun (installer writes to /root/.bun by default)
+RUN curl -fsSL https://bun.sh/install | bash \
+  && mv /root/.bun/bin/bun /usr/local/bin/bun \
+  && bun --version
 
-# Install dependencies with Bun
-RUN bun install
+# copy lockfile first so install layer is cached
+COPY package.json package-lock.json* bun.lockb* ./
 
-# Copy the rest of your application code
+# Use bun to install (frozen lockfile)
+RUN bun install --frozen-lockfile
+
+# --- builder: build app & generate prisma client ---
+FROM node:20-alpine AS builder
+RUN apk add --no-cache openssl
+WORKDIR /app
+
+COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
-# Build the Next.js application
-# Ensure NEXT_TELEMETRY_DISABLED is set to avoid telemetry prompts during build
-ENV NEXT_TELEMETRY_DISABLED 1
-RUN bun run build
+ENV NEXT_TELEMETRY_DISABLED=1
+ENV DATABASE_URL=postgresql://dummy:dummy@localhost:5432/dummy
+ENV STRIPE_SECRET_KEY=sk_test_dummy_for_build
+ENV NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=pk_test_dummy_for_build
+ENV STRIPE_WEBHOOK_SECRET=whsec_dummy_for_build
 
-# --- Production stage ---
-FROM oven/bun:latest as runner
+# Generate Prisma client
+RUN npx prisma generate
 
+# Build Next.js app
+RUN npm run build
+
+# --- runner: minimal runtime with built artifacts ---
+FROM node:20-alpine AS runner
+RUN apk add --no-cache curl
 WORKDIR /app
 
-# Copy the build output from the builder stage
-COPY --from=builder /app/.next ./.next
+# create non-root user *before* copying files so chown -R nextjs below works
+RUN addgroup --system --gid 1001 nodejs \
+ && adduser --system --uid 1001 --ingroup nodejs nextjs
+
+# Copy the minimal standalone output produced by Next.js
+# The standalone folder contains server.js and a package.json for the runtime
+COPY --from=builder /app/.next/standalone/ ./
+# static + public
+COPY --from=builder /app/.next/static ./.next/static
 COPY --from=builder /app/public ./public
+
+# Copy prisma artifacts and the node_modules that runtime needs.
 COPY --from=builder /app/node_modules ./node_modules
-COPY --from=builder /app/package.json ./package.json
-COPY --from=builder /app/package.json /app/bun.lock ./bun.lock
+COPY --from=builder /app/prisma ./prisma
 
-# Set environment variables for Next.js production
-ENV NODE_ENV production
-ENV PORT 3000
+# ensure proper ownership for non-root user
+RUN chown -R nextjs:nodejs /app
 
-# Expose the port Next.js runs on
+USER nextjs
+
+# runtime env
+ENV NODE_ENV=production
+ENV PORT=3000
+ENV HOSTNAME=0.0.0.0
 EXPOSE 3000
 
-# Start the Next.js application with Bun
-CMD ["bun", "run", "start"]
+HEALTHCHECK --interval=30s --timeout=10s --start-period=20s --retries=3 \
+  CMD curl -fsS "http://localhost:${PORT}/" || exit 1
+
+# Start the standalone server produced by Next
+# The standalone output contains server.js at the container root when copied above
+CMD ["node", "server.js"]

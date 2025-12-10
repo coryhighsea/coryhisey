@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useState, Suspense } from 'react'
 import { useSearchParams } from 'next/navigation'
 import Link from 'next/link'
 import LoadingSpinner from '@/components/shop/LoadingSpinner'
@@ -31,7 +31,7 @@ interface OrderData {
   }
 }
 
-export default function SuccessPage() {
+function SuccessPageContent() {
   const searchParams = useSearchParams()
   const sessionId = searchParams.get('session_id')
   const [orderData, setOrderData] = useState<OrderData | null>(null)
@@ -186,5 +186,13 @@ export default function SuccessPage() {
         </div>
       </div>
     </div>
+  )
+}
+
+export default function SuccessPage() {
+  return (
+    <Suspense fallback={<LoadingSpinner />}>
+      <SuccessPageContent />
+    </Suspense>
   )
 }

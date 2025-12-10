@@ -68,13 +68,8 @@ export default function Cart({ isOpen, onClose }: CartProps) {
         return
       }
 
-      const { error } = await stripe.redirectToCheckout({
-        sessionId: data.sessionId,
-      })
-
-      if (error) {
-        throw new Error(error.message)
-      }
+      // Redirect to Stripe checkout
+      window.location.href = data.checkoutUrl
     } catch (error) {
       console.error('Checkout error:', error)
       alert(error instanceof Error ? error.message : 'Checkout failed')
