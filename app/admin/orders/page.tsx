@@ -151,7 +151,7 @@ export default function OrdersAdminPage() {
                       </td>
                       <td className="px-6 py-4">
                         <div className="text-sm text-gray-900">
-                          {order.orderItems.map((item, index) => (
+                          {order.orderItems.map((item) => (
                             <div key={item.id} className="mb-1">
                               {item.quantity}x {item.product.name}
                             </div>

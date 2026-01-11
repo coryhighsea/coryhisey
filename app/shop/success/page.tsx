@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState, Suspense } from 'react'
+import { useEffect, useState, useCallback, Suspense } from 'react'
 import { useSearchParams } from 'next/navigation'
 import Link from 'next/link'
 import LoadingSpinner from '@/components/shop/LoadingSpinner'
@@ -38,16 +38,7 @@ function SuccessPageContent() {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
 
-  useEffect(() => {
-    if (sessionId) {
-      fetchOrderData()
-    } else {
-      setError('No session ID provided')
-      setLoading(false)
-    }
-  }, [sessionId])
-
-  const fetchOrderData = async () => {
+  const fetchOrderData = useCallback(async () => {
     try {
       const response = await fetch(`/api/orders?session_id=${sessionId}`)
       if (!response.ok) {
@@ -60,7 +51,16 @@ function SuccessPageContent() {
     } finally {
       setLoading(false)
     }
-  }
+  }, [sessionId])
+
+  useEffect(() => {
+    if (sessionId) {
+      fetchOrderData()
+    } else {
+      setError('No session ID provided')
+      setLoading(false)
+    }
+  }, [sessionId, fetchOrderData])
 
   const formatPrice = (priceInCents: number) => {
     return new Intl.NumberFormat('en-US', {
@@ -116,7 +116,7 @@ function SuccessPageContent() {
               </svg>
             </div>
             <h1 className="text-3xl font-bold text-gray-900 mb-2">Payment Successful!</h1>
-            <p className="text-gray-600">Thank you for your order. We'll send you shipping details soon.</p>
+            <p className="text-gray-600">Thank you for your order. We&apos;ll send you shipping details soon.</p>
           </div>
 
           {/* Order Details */}

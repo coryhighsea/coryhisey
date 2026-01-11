@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { stripe } from '@/lib/stripe'
 import { prisma } from '@/lib/prisma'
+import { CartItem } from '@/lib/types'
 
 export async function POST(request: NextRequest) {
   try {
@@ -18,7 +19,7 @@ export async function POST(request: NextRequest) {
     }
     
     // Verify product availability and get current prices
-    const productIds = items.map((item: any) => item.product.id)
+    const productIds = items.map((item: CartItem) => item.product.id)
     const products = await prisma.product.findMany({
       where: {
         id: { in: productIds }
@@ -69,7 +70,7 @@ export async function POST(request: NextRequest) {
         totalAmount,
         status: 'PENDING',
         orderItems: {
-          create: items.map((item: any) => {
+          create: items.map((item: CartItem) => {
             const product = products.find(p => p.id === item.product.id)!
             return {
               productId: product.id,
