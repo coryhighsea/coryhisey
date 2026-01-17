@@ -9,45 +9,51 @@ import Image from 'next/image';
 const App: React.FC = () => {
   const projects = [
     {
-      title: 'Smart Cockpit Centerconsole',
-      description: 'Developed the centerconsole of the Smart Cockpit with QT/QML and MQTT protocol to communicate with the other screens.',
-      imageSrc: 'https://placehold.co/600x400/2d3748/a0aec0?text=Smart+Cockpit',
-      youtubeLink: 'https://www.auo.com/en-global/products/index/Mobility/Smart_Cockpit',
+      title: 'HWSS Universe™ web app',
+      description: 'Production web application, hosting written chapters, AI companions and handling subscription tiers',
+      imageSrc: 'https://hwssuniverse.ca/images/house.jpeg',
+      demoLink: 'https://hwssuniverse.ca',
+      linkText: 'Visit Site',
       githubLink: 'https://github.com/coryhighsea',
     },
     {
       title: 'Translation validation AI tool',
       description: 'Validation tool using LLMs, built in Python to validate and improve translations in real-time.',
       imageSrc: 'https://placehold.co/600x400/2d3748/a0aec0?text=Translation+Validation+AI',
-      youtubeLink: 'https://www.youtube.com/@coryhisey8431',
+      demoLink: 'https://www.youtube.com/@coryhisey8431',
+      linkText: 'YouTube',
       githubLink: 'https://github.com/coryhighsea',
     },
     {
       title: 'Mobile drive robot simulation',
       description: 'A simulation of a mobile drive robot using ROS2 and Gazebo, showcasing path planning and obstacle avoidance.',
       imageSrc: '/ros2.png',
-      youtubeLink: 'https://www.youtube.com/watch?v=eMkwDfn32QA&t=1s&ab_channel=CoryHisey',
+      demoLink: 'https://www.youtube.com/watch?v=eMkwDfn32QA&t=1s&ab_channel=CoryHisey',
+      linkText: 'YouTube',
       githubLink: 'https://github.com/coryhighsea',
     },
     {
       title: 'Embedded screen UI with ESP32',
       description: 'An embedded screen UI developed with ESP32, featuring a responsive design and real-time sensor data via ESPNOW.',
       imageSrc: '/Screen.jpeg',
-      youtubeLink: 'https://www.youtube.com/@coryhisey8431',
+      demoLink: 'https://www.youtube.com/@coryhisey8431',
+      linkText: 'YouTube',
       githubLink: 'https://github.com/coryhighsea',
     },
     {
       title: 'Heltec LoRa32 Meshtastic',
       description: 'Meshtastic firmware flashed on Heltec LoRa32 with 3D printed enclosures. This project showcases long-range communication capabilities.',
       imageSrc: '/meshtastic.jpg',
-      youtubeLink: 'https://youtu.be/dKr2ze8ixjE?si=OnVvvoIgl9QhbolE',
+      demoLink: 'https://youtu.be/dKr2ze8ixjE?si=OnVvvoIgl9QhbolE',
+      linkText: 'YouTube',
       githubLink: 'https://github.com/coryhighsea',
     },
     {
       title: 'Odoo ERP AI-Agent',
       description: 'A custom-built plugin for Odoo featuring an AI assistant that connects to an LLM to read and write from the Odoo PostgreSQL database.',
       imageSrc: 'https://placehold.co/600x400/2d3748/a0aec0?text=Odoo+AI+Agent',
-      youtubeLink: 'https://youtu.be/09OrhxvnLjM?si=C_tNg7nMu3c2Z2zL',
+      demoLink: 'https://youtu.be/09OrhxvnLjM?si=C_tNg7nMu3c2Z2zL',
+      linkText: 'YouTube',
       githubLink: 'https://github.com/coryhighsea/odoo-erp-ai-agent',
     },
   ];
@@ -152,8 +158,8 @@ const App: React.FC = () => {
                     {project.description} {/* Use project.description */}
                   </p>
                   <div className="flex justify-between items-center">
-                    <a href={project.youtubeLink} target="_blank" rel="noopener noreferrer" className="text-teal-400 hover:text-teal-300 font-semibold transition-colors duration-300">
-                      YouTube
+                    <a href={project.demoLink} target="_blank" rel="noopener noreferrer" className="text-teal-400 hover:text-teal-300 font-semibold transition-colors duration-300">
+                      {project.linkText}
                     </a>
                     <a href={project.githubLink} target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors duration-300">
                       GitHub
