@@ -1,6 +1,5 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
-import { getToken } from "next-auth/jwt";
 
 const CANONICAL_DOMAIN = "coryhisey.com";
 
@@ -22,27 +21,6 @@ export async function proxy(request: NextRequest) {
     url.port = "";
     return NextResponse.redirect(url, 308);
   }
-
-  // Check if accessing admin routes
-  if (pathname.startsWith("/admin")) {
-    const token = await getToken({
-      req: request,
-      secret: process.env.NEXTAUTH_SECRET,
-    });
-
-    // Not authenticated
-    if (!token) {
-      const signInUrl = new URL("/auth/signin", request.url);
-      signInUrl.searchParams.set("callbackUrl", pathname);
-      return NextResponse.redirect(signInUrl);
-    }
-
-    // Not admin
-    if (token.role !== "ADMIN" && token.role !== "MODERATOR") {
-      return NextResponse.redirect(new URL("/unauthorized", request.url));
-    }
-  }
-
   return NextResponse.next();
 }
 
