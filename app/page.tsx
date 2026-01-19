@@ -3,7 +3,6 @@
 
 'use client';
 import React, { useState, useEffect } from 'react';
-import Image from 'next/image';
 
 // Skill data with proficiency levels
 const skills = [
@@ -185,15 +184,63 @@ const App: React.FC = () => {
 
       {/* Hero Section */}
       <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden">
-        <div className="absolute inset-0">
-          <Image
-            src="/hero2.jpeg"
-            alt="Hero Background"
-            fill
-            className="object-cover brightness-[0.3] contrast-125"
-            priority
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-[#0d1b2a]/50 via-transparent to-[#0d1b2a]" />
+        {/* Animated Background */}
+        <div className="hero-bg">
+          {/* Grid pattern */}
+          <div className="hero-grid" />
+
+          {/* Radar sweep effect */}
+          <div className="hero-radar" />
+
+          {/* Concentric rings */}
+          <div className="hero-rings">
+            <div className="hero-ring" />
+            <div className="hero-ring" />
+            <div className="hero-ring" />
+            <div className="hero-ring" />
+          </div>
+
+          {/* Floating particles */}
+          <div className="hero-particles">
+            {[...Array(15)].map((_, i) => (
+              <div key={i} className="particle" />
+            ))}
+          </div>
+
+          {/* Horizontal scan line */}
+          <div className="hero-scanline" />
+
+          {/* Data streams */}
+          <div className="hero-datastream hero-datastream-left">
+            <div className="datastream-text" style={{ animationDelay: '0s' }}>
+              0x4F 0x4E 0x4C 0x49 0x4E 0x45<br />
+              SYS_INIT: OK<br />
+              MEM_CHECK: PASS<br />
+              NET_STATUS: ACTIVE<br />
+              ENCRYPTION: AES-256<br />
+              USER_AUTH: VERIFIED<br />
+              CLEARANCE: LVL_4<br />
+              0x52 0x45 0x41 0x44 0x59
+            </div>
+          </div>
+          <div className="hero-datastream hero-datastream-right">
+            <div className="datastream-text" style={{ animationDelay: '7s' }}>
+              PING: 12ms<br />
+              CPU: 23%<br />
+              RAM: 4.2GB<br />
+              UPTIME: 99.9%<br />
+              TEMP: 42°C<br />
+              VOLTAGE: 5.1V<br />
+              FREQ: 2.4GHz<br />
+              STATUS: NOMINAL
+            </div>
+          </div>
+
+          {/* Corner brackets */}
+          <div className="hero-corner hero-corner-tl" />
+          <div className="hero-corner hero-corner-tr" />
+          <div className="hero-corner hero-corner-bl" />
+          <div className="hero-corner hero-corner-br" />
         </div>
 
         <div className="relative z-10 text-center max-w-4xl mx-auto px-4">
@@ -241,11 +288,11 @@ const App: React.FC = () => {
         </div>
 
         {/* Decorative corner elements */}
-        <div className="absolute bottom-8 left-8 text-[#b87a00] text-xs tracking-wider opacity-60">
-          LAT: 43.6532° N<br />
-          LONG: 79.3832° W
+        <div className="absolute bottom-8 left-8 text-[#b87a00] text-xs tracking-wider opacity-60 z-10">
+          LAT: 52.2686° N<br />
+          LONG: 8.0505° W
         </div>
-        <div className="absolute bottom-8 right-8 text-[#b87a00] text-xs tracking-wider opacity-60 text-right">
+        <div className="absolute bottom-8 right-8 text-[#b87a00] text-xs tracking-wider opacity-60 text-right z-10">
           SECTOR: 7G<br />
           CLEARANCE: LEVEL 4
         </div>

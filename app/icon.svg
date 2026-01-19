@@ -1,0 +1,25 @@
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="512" height="512" fill="#0d1b2a"/>
+
+  <!-- Outer border -->
+  <rect x="16" y="16" width="480" height="480" fill="none" stroke="#b87a00" stroke-width="8"/>
+
+  <!-- Corner accents -->
+  <path d="M16 80 L16 16 L80 16" fill="none" stroke="#ffb000" stroke-width="8"/>
+  <path d="M432 16 L496 16 L496 80" fill="none" stroke="#ffb000" stroke-width="8"/>
+  <path d="M496 432 L496 496 L432 496" fill="none" stroke="#ffb000" stroke-width="8"/>
+  <path d="M80 496 L16 496 L16 432" fill="none" stroke="#ffb000" stroke-width="8"/>
+
+  <!-- Inner decorative ring -->
+  <circle cx="256" cy="256" r="180" fill="none" stroke="#3d405b" stroke-width="4"/>
+  <circle cx="256" cy="256" r="160" fill="none" stroke="#b87a00" stroke-width="2"/>
+
+  <!-- CH Letters -->
+  <text x="256" y="300" font-family="monospace" font-size="200" font-weight="bold" fill="#ffb000" text-anchor="middle">CH</text>
+
+  <!-- Status indicator -->
+  <circle cx="256" cy="400" r="12" fill="#10f518">
+    <animate attributeName="opacity" values="1;0.3;1" dur="2s" repeatCount="indefinite"/>
+  </circle>
+</svg>
