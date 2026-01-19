@@ -1,0 +1,29 @@
+{
+  "name": "vault-monitor",
+  "version": "1.0.0",
+  "description": "Retro-futuristic system monitor TUI inspired by Fallout Pip-Boy",
+  "type": "module",
+  "main": "dist/app.js",
+  "bin": {
+    "vault-monitor": "dist/app.js"
+  },
+  "scripts": {
+    "dev": "tsx watch src/app.tsx",
+    "build": "tsc",
+    "start": "node dist/app.js"
+  },
+  "keywords": ["tui", "terminal", "system-monitor", "pip-boy", "retro"],
+  "author": "Cory Hisey",
+  "license": "MIT",
+  "dependencies": {
+    "ink": "^5.0.1",
+    "react": "^18.3.1",
+    "systeminformation": "^5.22.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.0",
+    "@types/react": "^18.3.0",
+    "tsx": "^4.20.0",
+    "typescript": "^5.6.0"
+  }
+}
