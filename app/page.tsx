@@ -10,7 +10,7 @@ const skills = [
   { name: 'C++', level: 75 },
   { name: 'JavaScript', level: 80 },
   { name: 'Python', level: 88 },
-  { name: 'AI Engineering', level: 75 },
+  { name: 'Linux', level: 75 },
   { name: 'ROS2', level: 43 },
   { name: 'Next.js', level: 78 },
   { name: 'TypeScript', level: 86 },
