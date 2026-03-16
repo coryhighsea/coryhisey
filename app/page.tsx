@@ -18,6 +18,9 @@ const skills = [
   { name: 'Git', level: 92 },
   { name: 'Docker', level: 82 },
   { name: '3D Printing', level: 85 },
+  { name: 'React', level: 80 },
+  { name: 'LLM / AI Integration', level: 85 },
+  { name: 'Tailwind CSS', level: 78 },
 ];
 
 // Typing effect hook
@@ -79,8 +82,9 @@ const SkillBar: React.FC<{ name: string; level: number; delay: number }> = ({ na
 // Main App component
 const App: React.FC = () => {
   const heroText = useTypingEffect("CORY HISEY", 100, 500);
-  const subtitleText = useTypingEffect("EMBEDDED SOFTWARE DEVELOPER", 50, 1800);
+  const subtitleText = useTypingEffect("EMBEDDED & AI SOFTWARE DEVELOPER", 50, 1800);
   const [bootComplete, setBootComplete] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
     const timer = setTimeout(() => setBootComplete(true), 400);
@@ -100,7 +104,7 @@ const App: React.FC = () => {
     },
     {
       title: 'Video Pipeline Tool',
-      code: 'PROJECT-007',
+      code: 'PROJECT-002',
       classification: 'ACTIVE',
       description: 'Upload a Google Meet transcript and recording — Grok suggests highlight-worthy shorts, filler words are cut, subtitles added, then render and download.',
       imageSrc: 'https://placehold.co/600x400/1b263b/ffb000?text=VIDEO+PIPELINE',
@@ -110,7 +114,7 @@ const App: React.FC = () => {
     },
     {
       title: 'Translation Validation AI',
-      code: 'PROJECT-002',
+      code: 'PROJECT-003',
       classification: 'COMPLETE',
       description: 'Validation tool using LLMs, built in Python to validate and improve translations in real-time.',
       imageSrc: 'https://placehold.co/600x400/1b263b/ffb000?text=TRANSLATION+AI',
@@ -120,7 +124,7 @@ const App: React.FC = () => {
     },
     {
       title: 'Mobile Robot Simulation',
-      code: 'PROJECT-003',
+      code: 'PROJECT-004',
       classification: 'COMPLETE',
       description: 'A simulation of a mobile drive robot using ROS2 and Gazebo, showcasing path planning and obstacle avoidance.',
       imageSrc: '/ros2.png',
@@ -130,7 +134,7 @@ const App: React.FC = () => {
     },
     {
       title: 'ESP32 Embedded Screen UI',
-      code: 'PROJECT-004',
+      code: 'PROJECT-005',
       classification: 'COMPLETE',
       description: 'An embedded screen UI developed with ESP32, featuring a responsive design and real-time sensor data via ESPNOW.',
       imageSrc: '/Screen.jpeg',
@@ -140,7 +144,7 @@ const App: React.FC = () => {
     },
     {
       title: 'Heltec LoRa32 Meshtastic',
-      code: 'PROJECT-005',
+      code: 'PROJECT-006',
       classification: 'ACTIVE',
       description: 'Meshtastic firmware flashed on Heltec LoRa32 with 3D printed enclosures. Long-range communication system.',
       imageSrc: '/meshtastic.jpg',
@@ -150,7 +154,7 @@ const App: React.FC = () => {
     },
     {
       title: 'Odoo ERP AI-Agent',
-      code: 'PROJECT-006',
+      code: 'PROJECT-007',
       classification: 'COMPLETE',
       description: 'A custom-built plugin for Odoo featuring an AI assistant that connects to an LLM to read and write from the Odoo PostgreSQL database.',
       imageSrc: 'https://placehold.co/600x400/1b263b/ffb000?text=ODOO+AI+AGENT',
@@ -176,7 +180,8 @@ const App: React.FC = () => {
               C.HISEY
             </span>
           </a>
-          <div className="flex items-center space-x-8">
+          {/* Desktop nav */}
+          <div className="hidden md:flex items-center space-x-8">
             {['ABOUT', 'SKILLS', 'PROJECTS', 'CONTACT'].map((item) => (
               <a
                 key={item}
@@ -189,7 +194,32 @@ const App: React.FC = () => {
               </a>
             ))}
           </div>
+          {/* Mobile hamburger */}
+          <button
+            className="md:hidden flex flex-col gap-1.5 p-2 text-[#ffb000]"
+            onClick={() => setMenuOpen((o) => !o)}
+            aria-label="Toggle menu"
+          >
+            <span className={`block w-6 h-0.5 bg-[#ffb000] transition-all duration-300 ${menuOpen ? 'rotate-45 translate-y-2' : ''}`} />
+            <span className={`block w-6 h-0.5 bg-[#ffb000] transition-all duration-300 ${menuOpen ? 'opacity-0' : ''}`} />
+            <span className={`block w-6 h-0.5 bg-[#ffb000] transition-all duration-300 ${menuOpen ? '-rotate-45 -translate-y-2' : ''}`} />
+          </button>
         </div>
+        {/* Mobile dropdown */}
+        {menuOpen && (
+          <div className="md:hidden border-t border-[#b87a00] bg-[#0d1b2a]">
+            {['ABOUT', 'SKILLS', 'PROJECTS', 'CONTACT'].map((item) => (
+              <a
+                key={item}
+                href={`#${item.toLowerCase()}`}
+                onClick={() => setMenuOpen(false)}
+                className="block px-6 py-3 text-[#e8dcc4] hover:text-[#ffb000] hover:bg-[#1b263b] transition-all text-sm tracking-widest border-b border-[#3d405b]"
+              >
+                [{item}]
+              </a>
+            ))}
+          </div>
+        )}
       </nav>
 
       {/* Hero Section */}
@@ -341,7 +371,7 @@ const App: React.FC = () => {
                 <div className="mt-4 text-center">
                   <div className="inline-block bg-[#0d1b2a] border-2 border-[#b87a00] px-4 py-2">
                     <p className="text-[#ffb000] text-xs tracking-[0.3em]">EMPLOYEE ID</p>
-                    <p className="text-[#e8dcc4] text-lg tracking-wider">CH-2024-001</p>
+                    <p className="text-[#e8dcc4] text-lg tracking-wider">CH-2025-001</p>
                   </div>
                 </div>
               </div>
