@@ -99,6 +99,16 @@ const App: React.FC = () => {
       githubLink: 'https://github.com/coryhighsea',
     },
     {
+      title: 'Video Pipeline Tool',
+      code: 'PROJECT-007',
+      classification: 'ACTIVE',
+      description: 'Upload a Google Meet transcript and recording — Grok suggests highlight-worthy shorts, filler words are cut, subtitles added, then render and download.',
+      imageSrc: 'https://placehold.co/600x400/1b263b/ffb000?text=VIDEO+PIPELINE',
+      demoLink: 'https://stack-crate.com',
+      linkText: 'Access Site',
+      githubLink: 'https://github.com/coryhighsea',
+    },
+    {
       title: 'Translation Validation AI',
       code: 'PROJECT-002',
       classification: 'COMPLETE',
