@@ -93,8 +93,18 @@ const App: React.FC = () => {
 
   const projects = [
     {
-      title: 'HWSS Universe™ Web App',
+      title: 'NISD2.eu',
       code: 'PROJECT-001',
+      classification: 'ACTIVE',
+      description: 'Digital compliance management platform helping German SMEs implement the EU NIS2 Directive. Guides companies through legal obligations and generates audit-ready documentation.',
+      imageSrc: '/nisd2.png',
+      demoLink: 'https://nisd2.eu',
+      linkText: 'Access Site',
+      githubLink: 'https://github.com/coryhighsea',
+    },
+    {
+      title: 'HWSS Universe™ Web App',
+      code: 'PROJECT-002',
       classification: 'ACTIVE',
       description: 'Production web application, hosting written chapters, AI companions and handling subscription tiers.',
       imageSrc: 'https://hwssuniverse.ca/images/house.jpeg',
@@ -104,7 +114,7 @@ const App: React.FC = () => {
     },
     {
       title: 'Video Pipeline Tool',
-      code: 'PROJECT-002',
+      code: 'PROJECT-003',
       classification: 'ACTIVE',
       description: 'Upload a Google Meet transcript and recording — Grok suggests highlight-worthy shorts, filler words are cut, subtitles added, then render and download.',
       imageSrc: 'https://placehold.co/600x400/1b263b/ffb000?text=VIDEO+PIPELINE',
@@ -114,7 +124,7 @@ const App: React.FC = () => {
     },
     {
       title: 'Translation Validation AI',
-      code: 'PROJECT-003',
+      code: 'PROJECT-004',
       classification: 'COMPLETE',
       description: 'Validation tool using LLMs, built in Python to validate and improve translations in real-time.',
       imageSrc: 'https://placehold.co/600x400/1b263b/ffb000?text=TRANSLATION+AI',
@@ -124,7 +134,7 @@ const App: React.FC = () => {
     },
     {
       title: 'Mobile Robot Simulation',
-      code: 'PROJECT-004',
+      code: 'PROJECT-005',
       classification: 'COMPLETE',
       description: 'A simulation of a mobile drive robot using ROS2 and Gazebo, showcasing path planning and obstacle avoidance.',
       imageSrc: '/ros2.png',
@@ -134,7 +144,7 @@ const App: React.FC = () => {
     },
     {
       title: 'ESP32 Embedded Screen UI',
-      code: 'PROJECT-005',
+      code: 'PROJECT-006',
       classification: 'COMPLETE',
       description: 'An embedded screen UI developed with ESP32, featuring a responsive design and real-time sensor data via ESPNOW.',
       imageSrc: '/Screen.jpeg',
@@ -144,7 +154,7 @@ const App: React.FC = () => {
     },
     {
       title: 'Heltec LoRa32 Meshtastic',
-      code: 'PROJECT-006',
+      code: 'PROJECT-007',
       classification: 'ACTIVE',
       description: 'Meshtastic firmware flashed on Heltec LoRa32 with 3D printed enclosures. Long-range communication system.',
       imageSrc: '/meshtastic.jpg',
@@ -154,7 +164,7 @@ const App: React.FC = () => {
     },
     {
       title: 'Odoo ERP AI-Agent',
-      code: 'PROJECT-007',
+      code: 'PROJECT-008',
       classification: 'COMPLETE',
       description: 'A custom-built plugin for Odoo featuring an AI assistant that connects to an LLM to read and write from the Odoo PostgreSQL database.',
       imageSrc: 'https://placehold.co/600x400/1b263b/ffb000?text=ODOO+AI+AGENT',
